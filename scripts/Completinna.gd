@@ -6,7 +6,6 @@ var ACCELERATION = 100
 var GRAVITY = 400
 
 var _facing_right = true
-export(bool) var can_move = true
 
 signal jumped(meh, owo)
 
@@ -41,7 +40,6 @@ func _ready() -> void:
 func _start_player():
 	animation_tree.active = true
 	attack.hide()
-	can_move = true
 	grab_area_collision.disabled = true
 
 	
@@ -49,6 +47,9 @@ func _on_mouse_entered():
 	print("owo")
 
 func _physics_process(delta: float) -> void:
+	var can_move = not (playback.get_current_node() == "grab" or playback.get_current_node() == "attack")
+	
+	
 	lineal_vel = move_and_slide(lineal_vel, Vector2.UP)
 	lineal_vel.y += GRAVITY * delta
 	
@@ -69,8 +70,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("fire"):
 		_fire()
 		
-	if Input.is_action_just_pressed("attack"):
-		playback.travel("attack")
+	if on_floor and Input.is_action_just_pressed("attack"):
+		_attack()
 		return
 	
 	if on_floor and not _box and Input.is_action_just_released("grab"):
@@ -100,7 +101,7 @@ func _physics_process(delta: float) -> void:
 			playback.travel("fall")
 	
 	
-	if playback.get_current_node() == "grab":
+	if not can_move:
 		return
 
 	if Input.is_action_pressed("left") and not Input.is_action_pressed("right") and _facing_right:
@@ -116,6 +117,9 @@ func _fire():
 	bullet.global_position = $BulletSpawn.global_position
 	if not _facing_right:
 		bullet.rotation = PI
+
+func _attack():
+	playback.travel("attack")
 
 func _grab():
 	playback.travel("grab")

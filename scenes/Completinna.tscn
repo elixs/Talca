@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://sprites/Battlemage Fantasy Character/Battlemage Complete (Sprite Sheet)/Idle/Battlemage Idle.png" type="Texture" id=1]
 [ext_resource path="res://sprites/Battlemage Fantasy Character/Battlemage Complete (Sprite Sheet)/Running/Battlemage Run.png" type="Texture" id=2]
@@ -69,6 +69,44 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "fall"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 13 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "grab"
@@ -135,24 +173,12 @@ tracks/4/keys = {
 "values": [ false, true ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath(".:can_move")
+tracks/5/path = NodePath("AttackPosition/Attack:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("AttackPosition/Attack:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
 "times": PoolRealArray( 0.5 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -470,6 +496,8 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id=45]
 switch_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
+
 [sub_resource type="AnimationNodeStateMachine" id=35]
 states/attack/node = SubResource( 41 )
 states/attack/position = Vector2( 88, 195.482 )
@@ -488,10 +516,10 @@ states/jump_to_fall/position = Vector2( 1056, 88 )
 states/land/node = SubResource( 16 )
 states/land/position = Vector2( 865, 262 )
 states/run/node = SubResource( 17 )
-states/run/position = Vector2( 379, 189 )
-transitions = [ "idle", "run", SubResource( 18 ), "run", "idle", SubResource( 19 ), "idle", "jump_start", SubResource( 20 ), "run", "jump_start", SubResource( 21 ), "jump_start", "jump", SubResource( 22 ), "fall", "land", SubResource( 23 ), "land", "idle", SubResource( 24 ), "jump", "jump_to_fall", SubResource( 25 ), "jump_to_fall", "fall", SubResource( 26 ), "land", "run", SubResource( 27 ), "idle", "jump_to_fall", SubResource( 28 ), "run", "jump_to_fall", SubResource( 29 ), "land", "jump_start", SubResource( 30 ), "idle", "grab", SubResource( 31 ), "run", "grab", SubResource( 32 ), "grab", "idle", SubResource( 33 ), "grab", "run", SubResource( 34 ), "idle", "attack", SubResource( 42 ), "run", "attack", SubResource( 43 ), "attack", "idle", SubResource( 44 ), "attack", "run", SubResource( 45 ) ]
+states/run/position = Vector2( 379, 220 )
+transitions = [ "idle", "run", SubResource( 18 ), "run", "idle", SubResource( 19 ), "idle", "jump_start", SubResource( 20 ), "run", "jump_start", SubResource( 21 ), "jump_start", "jump", SubResource( 22 ), "fall", "land", SubResource( 23 ), "land", "idle", SubResource( 24 ), "jump", "jump_to_fall", SubResource( 25 ), "jump_to_fall", "fall", SubResource( 26 ), "land", "run", SubResource( 27 ), "idle", "jump_to_fall", SubResource( 28 ), "run", "jump_to_fall", SubResource( 29 ), "land", "jump_start", SubResource( 30 ), "idle", "grab", SubResource( 31 ), "run", "grab", SubResource( 32 ), "grab", "idle", SubResource( 33 ), "grab", "run", SubResource( 34 ), "idle", "attack", SubResource( 42 ), "run", "attack", SubResource( 43 ), "attack", "idle", SubResource( 44 ), "attack", "run", SubResource( 45 ), "jump_to_fall", "land", SubResource( 46 ) ]
 start_node = "idle"
-graph_offset = Vector2( -137, 33.4817 )
+graph_offset = Vector2( 289, -38.5183 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=36]
 
@@ -522,9 +550,9 @@ __meta__ = {
 position = Vector2( 0, -38 )
 rotation = 0.00174533
 scale = Vector2( 4, 4 )
-texture = ExtResource( 10 )
-vframes = 8
-frame = 6
+texture = ExtResource( 5 )
+vframes = 13
+frame = 9
 
 [node name="AttackPosition" type="Position2D" parent="."]
 position = Vector2( 300, 0 )
@@ -535,7 +563,7 @@ scale = Vector2( 4, 4 )
 z_index = 10
 texture = ExtResource( 9 )
 vframes = 10
-frame = 9
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack = SubResource( 39 )
@@ -552,6 +580,7 @@ anims/run = SubResource( 9 )
 tree_root = SubResource( 35 )
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource( 36 )
+parameters/conditions/on_floor = false
 
 [node name="BulletSpawn" type="Position2D" parent="."]
 position = Vector2( 90, -20 )
@@ -592,7 +621,6 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GrabArea"]
 position = Vector2( 161, 1 )
 shape = SubResource( 38 )
-disabled = true
 
 [node name="GrabPosition" type="Position2D" parent="."]
 position = Vector2( 0, -120 )
