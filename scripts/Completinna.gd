@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
-var lineal_vel = Vector2.ZERO
+var linear_vel = Vector2.ZERO
 var SPEED = 300
-var ACCELERATION = 100
+var ACCELERATION = 400
 var GRAVITY = 400
 
 var _facing_right = true
@@ -21,6 +21,7 @@ onready var grab_position = $GrabPosition
 onready var grab_area_collision = $GrabArea/CollisionShape2D
 onready var attack_area = $AttackArea
 
+onready var item = $Item
 
 var _box : Box = null
 
@@ -28,7 +29,6 @@ var Bullet = preload("res://scenes/Bullet.tscn")
 
 func _ready() -> void:
 	Manager.player = self
-
 	
 	connect("mouse_entered", self, "_on_mouse_entered")
 	
@@ -36,7 +36,7 @@ func _ready() -> void:
 	attack_area.connect("body_entered", self, "on_attack_body_entered")
 	
 	_start_player()
-
+	
 func _start_player():
 	animation_tree.active = true
 	attack.hide()
@@ -50,8 +50,8 @@ func _physics_process(delta: float) -> void:
 	var can_move = not (playback.get_current_node() == "grab" or playback.get_current_node() == "attack")
 	
 	
-	lineal_vel = move_and_slide(lineal_vel, Vector2.UP)
-	lineal_vel.y += GRAVITY * delta
+	linear_vel = move_and_slide(linear_vel, Vector2.UP)
+	linear_vel.y += GRAVITY * delta
 	
 	var on_floor = is_on_floor()
 	
@@ -60,10 +60,10 @@ func _physics_process(delta: float) -> void:
 	if not can_move:
 		target_vel = 0
 	
-	lineal_vel.x = move_toward(lineal_vel.x, target_vel * SPEED, ACCELERATION)
+	linear_vel.x = move_toward(linear_vel.x, target_vel * SPEED, ACCELERATION * delta)
 	
 	if on_floor and Input.is_action_just_pressed("jump"):
-		lineal_vel.y = -SPEED
+		linear_vel.y = -SPEED
 		jump_sound.play()
 		emit_signal("jumped", "asdf", 123)
 	
@@ -90,12 +90,12 @@ func _physics_process(delta: float) -> void:
 	
 	# Animations
 	if on_floor:
-		if abs(lineal_vel.x) > 10:
+		if abs(linear_vel.x) > 10:
 			playback.travel("run")
 		else:
 			playback.travel("idle")
 	else:
-		if lineal_vel.y <= 0:
+		if linear_vel.y <= 0:
 			playback.travel("jump")
 		else:
 			playback.travel("fall")
@@ -125,7 +125,7 @@ func _grab():
 	playback.travel("grab")
 
 func _drop():
-	if abs(lineal_vel.x) > 10:
+	if abs(linear_vel.x) > 10:
 		_box.launch(Vector2((1 if _facing_right else -1) * 30, -5))
 	else:
 		_box.launch(Vector2.ZERO)
