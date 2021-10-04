@@ -1,16 +1,20 @@
 class_name Slot
-
 extends TextureRect
 
+
+signal selected()
 
 const EMPTY = Rect2(710, 662, 72, 72)
 const FULL = Rect2(962, 662, 72, 72)
 
+var item: Node2D = null setget set_item
+
 onready var holder = $Holder
 
-signal selected
+func _ready() -> void:
+	connect("gui_input", self, "_on_gui_input")
 
-var item: Node2D = null setget set_item
+
 func set_item(value):
 	item = value
 	if item:
@@ -22,9 +26,7 @@ func set_item(value):
 	else:
 		texture.region = EMPTY
 
-func _ready() -> void:
-	connect("gui_input", self, "_on_gui_input")
 
 func _on_gui_input(event: InputEvent):
 	if event.is_action_pressed("inventory_select") and not event.is_echo():
-		emit_signal("selected", item)
+		emit_signal("selected")

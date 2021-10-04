@@ -1,0 +1,8 @@
+{
+  "potion": {
+    "stack_size": 1
+  },
+  "fish": {
+    "stack_size": 64
+  }
+}

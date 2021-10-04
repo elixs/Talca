@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Hit 1.wav-325538445085720302e23730fe3fafe5.sample"
+
+[deps]
+
+source_file="res://assets/sounds/Joel Francis Burford Free JRPG 8-Bit Music + SFX Samples/SFX/Hit 1.wav"
+dest_files=[ "res://.import/Hit 1.wav-325538445085720302e23730fe3fafe5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

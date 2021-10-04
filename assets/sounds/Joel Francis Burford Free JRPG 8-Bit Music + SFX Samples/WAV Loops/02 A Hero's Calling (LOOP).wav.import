@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/02 A Hero's Calling (LOOP).wav-2fb41f208cffaa8f784793650d85ff70.sample"
+
+[deps]
+
+source_file="res://assets/sounds/Joel Francis Burford Free JRPG 8-Bit Music + SFX Samples/WAV Loops/02 A Hero's Calling (LOOP).wav"
+dest_files=[ "res://.import/02 A Hero's Calling (LOOP).wav-2fb41f208cffaa8f784793650d85ff70.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

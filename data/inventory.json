@@ -1,32 +1,30 @@
 {
   "0": {
     "id": "fish",
-    "quantity": "3",
-    "stack_size": "64"
+    "quantity": 3
   },
   "1": {
     "id": "meh",
-    "quantity": "15",
-    "stack_size": "69"
+    "quantity": 15
+  },
+  "2": {
+    "id": "meh",
+    "quantity": 42
   },
   "3": {
     "id": "potion",
-    "quantity": "1",
-    "stack_size": "1"
+    "quantity": 1
   },
   "4": {
     "id": "potion",
-    "quantity": "1",
-    "stack_size": "1"
+    "quantity": 1
   },
   "7": {
     "id": "fish",
-    "quantity": "40",
-    "stack_size": "64"
+    "quantity": 40
   },
   "8": {
     "id": "fish",
-    "quantity": "40",
-    "stack_size": "64"
+    "quantity": 40
   }
 }

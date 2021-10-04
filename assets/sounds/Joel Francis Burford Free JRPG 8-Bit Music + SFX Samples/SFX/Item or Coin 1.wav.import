@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Item or Coin 1.wav-f4e509501e20f44d7dfbdeb601da9667.sample"
+
+[deps]
+
+source_file="res://assets/sounds/Joel Francis Burford Free JRPG 8-Bit Music + SFX Samples/SFX/Item or Coin 1.wav"
+dest_files=[ "res://.import/Item or Coin 1.wav-f4e509501e20f44d7dfbdeb601da9667.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

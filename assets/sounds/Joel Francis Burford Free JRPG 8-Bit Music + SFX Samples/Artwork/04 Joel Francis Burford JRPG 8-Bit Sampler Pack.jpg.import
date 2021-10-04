@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/04 Joel Francis Burford JRPG 8-Bit Sampler Pack.jpg-9291a0506b23ddc420c171306b643323.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://assets/sounds/Joel Francis Burford Free JRPG 8-Bit Music + SFX Samples/Artwork/04 Joel Francis Burford JRPG 8-Bit Sampler Pack.jpg"
+dest_files=[ "res://.import/04 Joel Francis Burford JRPG 8-Bit Sampler Pack.jpg-9291a0506b23ddc420c171306b643323.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0
