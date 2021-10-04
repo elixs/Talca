@@ -1,31 +1,54 @@
 [gd_resource type="AnimationNodeStateMachine" load_steps=32 format=2]
 
-[sub_resource type="AnimationNodeAnimation" id=11]
+[sub_resource type="AnimationNodeAnimation" id=1]
 animation = "attack"
 
-[sub_resource type="AnimationNodeAnimation" id=12]
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "fall"
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "grab"
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=15]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "jump"
 
-[sub_resource type="AnimationNodeAnimation" id=16]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "jump_start"
 
-[sub_resource type="AnimationNodeAnimation" id=17]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "jump_to_fall"
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "land"
 
-[sub_resource type="AnimationNodeAnimation" id=19]
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=20]
 
@@ -36,9 +59,9 @@ animation = "run"
 [sub_resource type="AnimationNodeStateMachineTransition" id=23]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=24]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=25]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=26]
 switch_mode = 2
@@ -46,57 +69,34 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id=27]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=28]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=29]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=30]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=32]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=33]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=34]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=35]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=36]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=37]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=38]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=39]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=40]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=41]
-
 [resource]
-states/attack/node = SubResource( 11 )
+states/attack/node = SubResource( 1 )
 states/attack/position = Vector2( 88, 195.482 )
-states/fall/node = SubResource( 12 )
+states/fall/node = SubResource( 2 )
 states/fall/position = Vector2( 1056, 189 )
-states/grab/node = SubResource( 13 )
+states/grab/node = SubResource( 3 )
 states/grab/position = Vector2( 94, 117 )
-states/idle/node = SubResource( 14 )
+states/idle/node = SubResource( 4 )
 states/idle/position = Vector2( 379, 56 )
-states/jump/node = SubResource( 15 )
+states/jump/node = SubResource( 5 )
 states/jump/position = Vector2( 1056, -18 )
-states/jump_start/node = SubResource( 16 )
+states/jump_start/node = SubResource( 6 )
 states/jump_start/position = Vector2( 1056, -113 )
-states/jump_to_fall/node = SubResource( 17 )
+states/jump_to_fall/node = SubResource( 7 )
 states/jump_to_fall/position = Vector2( 1056, 88 )
-states/land/node = SubResource( 18 )
+states/land/node = SubResource( 8 )
 states/land/position = Vector2( 865, 262 )
-states/run/node = SubResource( 19 )
+states/run/node = SubResource( 9 )
 states/run/position = Vector2( 379, 220 )
-transitions = [ "idle", "run", SubResource( 20 ), "run", "idle", SubResource( 21 ), "idle", "jump_start", SubResource( 22 ), "run", "jump_start", SubResource( 23 ), "jump_start", "jump", SubResource( 24 ), "fall", "land", SubResource( 25 ), "land", "idle", SubResource( 26 ), "jump", "jump_to_fall", SubResource( 27 ), "jump_to_fall", "fall", SubResource( 28 ), "land", "run", SubResource( 29 ), "idle", "jump_to_fall", SubResource( 30 ), "run", "jump_to_fall", SubResource( 31 ), "land", "jump_start", SubResource( 32 ), "idle", "grab", SubResource( 33 ), "run", "grab", SubResource( 34 ), "grab", "idle", SubResource( 35 ), "grab", "run", SubResource( 36 ), "idle", "attack", SubResource( 37 ), "run", "attack", SubResource( 38 ), "attack", "idle", SubResource( 39 ), "attack", "run", SubResource( 40 ), "jump_to_fall", "land", SubResource( 41 ) ]
+transitions = [ "idle", "run", SubResource( 10 ), "run", "idle", SubResource( 11 ), "idle", "jump_start", SubResource( 12 ), "run", "jump_start", SubResource( 13 ), "jump_start", "jump", SubResource( 14 ), "fall", "land", SubResource( 15 ), "land", "idle", SubResource( 16 ), "jump", "jump_to_fall", SubResource( 17 ), "jump_to_fall", "fall", SubResource( 18 ), "land", "run", SubResource( 19 ), "idle", "jump_to_fall", SubResource( 20 ), "run", "jump_to_fall", SubResource( 21 ), "land", "jump_start", SubResource( 22 ), "idle", "grab", SubResource( 23 ), "run", "grab", SubResource( 24 ), "grab", "idle", SubResource( 25 ), "grab", "run", SubResource( 26 ), "idle", "attack", SubResource( 27 ), "run", "attack", SubResource( 28 ), "attack", "idle", SubResource( 29 ), "attack", "run", SubResource( 30 ), "jump_to_fall", "land", SubResource( 31 ) ]
 start_node = "idle"
 graph_offset = Vector2( 2.2211, -211.518 )

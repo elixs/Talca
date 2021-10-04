@@ -1,5 +1,5 @@
 extends Node
 
-var data: Dictionary = {}
 
+var data: Dictionary = {}
 var inventory: Dictionary = {}

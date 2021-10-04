@@ -7,7 +7,7 @@ signal selected()
 const EMPTY = Rect2(710, 662, 72, 72)
 const FULL = Rect2(962, 662, 72, 72)
 
-var item: Node2D = null setget set_item
+var item: Node2D = null setget _set_item
 
 onready var holder = $Holder
 
@@ -15,7 +15,7 @@ func _ready() -> void:
 	connect("gui_input", self, "_on_gui_input")
 
 
-func set_item(value):
+func _set_item(value):
 	item = value
 	if item:
 		texture.region = FULL

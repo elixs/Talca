@@ -1,9 +1,10 @@
 extends GridContainer
 
 
+const Item = preload("res://scenes/ui/item.tscn")
+
 var grabbed_item: Node2D = null setget _set_grabbed_item
 
-var Item = preload("res://scenes/Item.tscn")
 
 func _ready() -> void:
 	hide()
@@ -29,7 +30,7 @@ func _ready() -> void:
 				slot.item = item
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if grabbed_item:
 		grabbed_item.global_position = get_global_mouse_position()
 

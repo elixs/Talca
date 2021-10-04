@@ -10,7 +10,7 @@ func _ready() -> void:
 	timer.connect("timeout", self, "_on_timeout")
 
 
-func take_damage(damage):
+func take_damage(_damage):
 	label.show()
 	timer.start()
 

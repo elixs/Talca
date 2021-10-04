@@ -13,7 +13,7 @@ onready var quantity_label = $Quantity
 
 func _ready() -> void:
 	if id:
-		sprite.texture.region = _get_region_from_id(id)
+		sprite.texture.region = _get_region()
 		var item_quantity_label = quantity
 		if item_quantity_label > 1:
 			quantity_label.text = str(item_quantity_label)
@@ -29,7 +29,7 @@ func set_quantiy(value):
 	quantity_label.text = str(quantity)
 
 
-func _get_region_from_id(id: String):
+func _get_region():
 	var region = DEFAULT
 	match id:
 		"potion":

@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "RigidBody2D",
 "class": "Box",
 "language": "GDScript",
-"path": "res://scripts/Box.gd"
+"path": "res://scripts/box.gd"
 }, {
 "base": "TextureRect",
 "class": "Slot",
 "language": "GDScript",
-"path": "res://scripts/Slot.gd"
+"path": "res://scripts/ui/slot.gd"
 } ]
 _global_script_class_icons={
 "Box": "",
@@ -27,12 +27,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Talca"
-run/main_scene="res://scenes/MainMenu.tscn"
+run/main_scene="res://scenes/ui/main_menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Manager="*res://scripts/Manager.gd"
+Manager="*res://scripts/manager.gd"
 InventoryManager="*res://scripts/inventory_manager.gd"
 
 [debug]

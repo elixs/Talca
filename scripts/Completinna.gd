@@ -4,10 +4,10 @@ extends KinematicBody2D
 signal jumped(meh, owo)
 
 const SPEED = 300
-const JUMP_SPEED = 500
+const JUMP_SPEED = 750
 const ACCELERATION = 3000
-const GRAVITY = 1000
-const Bullet = preload("res://scenes/Bullet.tscn")
+const GRAVITY = 2000
+const Bullet = preload("res://scenes/bullet.tscn")
 
 var linear_vel = Vector2.ZERO
 
@@ -15,8 +15,7 @@ var _facing_right = true
 var _box : Box = null
 
 onready var animation_tree = $AnimationTree
-# A blend tree was added as root in order to apply a x1.25 speed to all animations
-onready var playback = animation_tree.get("parameters/StateMachine/playback")
+onready var playback = animation_tree.get("parameters/StateMachine/playback") # A blend tree was added as root in order to apply a x1.25 speed to all animations
 onready var jump_sound = $JumpSound
 onready var attack = $AttackPosition/Attack
 onready var attack_position = $AttackPosition
