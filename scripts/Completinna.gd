@@ -10,6 +10,8 @@ const GRAVITY = 2000
 const Bullet = preload("res://scenes/bullet.tscn")
 
 var linear_vel = Vector2.ZERO
+var health = 100 setget _set_health
+var max_health = 100
 
 var _facing_right = true
 var _box : Box = null
@@ -23,7 +25,7 @@ onready var grab_area = $GrabArea
 onready var grab_position = $GrabPosition
 onready var grab_area_collision = $GrabArea/CollisionShape2D
 onready var attack_area = $AttackArea
-
+onready var progress_bar = $CanvasLayer/MarginContainer3/ProgressBar
 
 func _ready() -> void:
 	Manager.player = self
@@ -44,7 +46,7 @@ func _physics_process(delta: float) -> void:
 	
 	var on_floor = is_on_floor()
 	
-	var target_vel = Input.get_action_strength("right") - Input.get_action_strength("left")
+	var target_vel = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	
 	if not can_move:
 		target_vel = 0
@@ -80,12 +82,17 @@ func _physics_process(delta: float) -> void:
 	if not can_move:
 		return
 
-	if Input.is_action_pressed("left") and not Input.is_action_pressed("right") and _facing_right:
+	if Input.is_action_pressed("move_left") and not Input.is_action_pressed("move_right") and _facing_right:
 		_facing_right = false
 		scale.x = -1
-	if Input.is_action_pressed("right") and not Input.is_action_pressed("left") and not _facing_right:
+	if Input.is_action_pressed("move_right") and not Input.is_action_pressed("move_left") and not _facing_right:
 		_facing_right = true
 		scale.x = -1
+
+
+func take_damage(value):
+	print("Auch! %d" % [value])
+	self.health -= value
 
 
 func _update_animation(on_floor):
@@ -150,3 +157,8 @@ func _on_box_entered(box: Box):
 func _on_attack_body_entered(body: Node):
 	if body.is_in_group("enemy") and body.has_method("take_damage"):
 		body.take_damage(10)
+
+
+func _set_health(value):
+	health = clamp(value, 0, max_health)
+	progress_bar.value = health

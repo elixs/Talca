@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://scenes/completinna.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/bullet.tscn" type="PackedScene" id=2]
@@ -9,8 +9,8 @@
 [ext_resource path="res://assets/sprites/free-swamp-game-tileset-pixel-art/2 Background/Layers/4.png" type="Texture" id=7]
 [ext_resource path="res://assets/sprites/free-swamp-game-tileset-pixel-art/2 Background/Layers/3.png" type="Texture" id=8]
 [ext_resource path="res://assets/sprites/free-swamp-game-tileset-pixel-art/2 Background/Layers/5.png" type="Texture" id=9]
-[ext_resource path="res://icon.png" type="Texture" id=10]
 [ext_resource path="res://scenes/box.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/spikes.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -344,6 +344,10 @@ scale = 0.1
 scale_random = 0.16
 color_ramp = SubResource( 36 )
 
+[sub_resource type="StreamTexture" id=38]
+flags = 4
+load_path = "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
+
 [node name="Main" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -433,7 +437,10 @@ amount = 10
 lifetime = 3.0
 fract_delta = false
 process_material = SubResource( 37 )
-texture = ExtResource( 10 )
+texture = SubResource( 38 )
 
 [node name="Box" parent="." instance=ExtResource( 11 )]
 position = Vector2( 582.893, 533.897 )
+
+[node name="Spikes" parent="." instance=ExtResource( 12 )]
+position = Vector2( 233.347, 563.05 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://assets/sprites/Battlemage Fantasy Character/Battlemage Complete (Sprite Sheet)/Idle/Battlemage Idle.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/Battlemage Fantasy Character/Battlemage Complete (Sprite Sheet)/Running/Battlemage Run.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://assets/sprites/ui_big_pieces2x.png" type="Texture" id=12]
 [ext_resource path="res://scripts/inventory.gd" type="Script" id=13]
 [ext_resource path="res://resources/Completinna_anim_state_machine.tres" type="AnimationNodeStateMachine" id=14]
+[ext_resource path="res://resources/theme.tres" type="Theme" id=15]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 24.0
@@ -435,10 +436,6 @@ node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "StateMachine" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=13]
 
-[sub_resource type="DynamicFont" id=14]
-size = 39
-font_data = ExtResource( 4 )
-
 [sub_resource type="AtlasTexture" id=15]
 resource_local_to_scene = true
 atlas = ExtResource( 12 )
@@ -484,6 +481,16 @@ resource_local_to_scene = true
 atlas = ExtResource( 12 )
 region = Rect2( 712, 662, 72, 72 )
 
+[sub_resource type="DynamicFont" id=14]
+size = 39
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=26]
+bg_color = Color( 0.298039, 0.878431, 0.0862745, 1 )
+
+[sub_resource type="StyleBoxFlat" id=27]
+bg_color = Color( 0.258824, 0.129412, 0.129412, 1 )
+
 [sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 150, 50 )
 
@@ -495,6 +502,8 @@ extents = Vector2( 49, 65 )
 ]]
 position = Vector2( 0, -1 )
 input_pickable = true
+collision_layer = 2
+collision_mask = 15
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -558,28 +567,23 @@ bus = "sfx"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-margin_left = 34.9228
-margin_top = 24.6047
-margin_right = 74.9228
-margin_bottom = 38.6047
-custom_fonts/font = SubResource( 14 )
-text = "Hello World"
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Inventory" type="GridContainer" parent="CanvasLayer"]
+[node name="Inventory" type="GridContainer" parent="CanvasLayer/MarginContainer"]
 pause_mode = 2
 visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -108.0
-margin_top = -108.0
-margin_right = 108.0
-margin_bottom = 108.0
+margin_left = 532.0
+margin_top = 252.0
+margin_right = 748.0
+margin_bottom = 468.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 custom_constants/vseparation = 0
 custom_constants/hseparation = 0
 columns = 3
@@ -588,62 +592,103 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Slot" parent="CanvasLayer/Inventory" instance=ExtResource( 11 )]
+[node name="Slot" parent="CanvasLayer/MarginContainer/Inventory" instance=ExtResource( 11 )]
 margin_right = 72.0
 margin_bottom = 72.0
 texture = SubResource( 15 )
 
-[node name="Slot2" parent="CanvasLayer/Inventory" instance=ExtResource( 11 )]
+[node name="Slot2" parent="CanvasLayer/MarginContainer/Inventory" instance=ExtResource( 11 )]
 margin_left = 72.0
 margin_right = 144.0
 margin_bottom = 72.0
 texture = SubResource( 16 )
 
-[node name="Slot3" parent="CanvasLayer/Inventory" instance=ExtResource( 11 )]
+[node name="Slot3" parent="CanvasLayer/MarginContainer/Inventory" instance=ExtResource( 11 )]
 margin_left = 144.0
 margin_right = 216.0
 margin_bottom = 72.0
 texture = SubResource( 17 )
 
-[node name="Slot4" parent="CanvasLayer/Inventory" instance=ExtResource( 11 )]
+[node name="Slot4" parent="CanvasLayer/MarginContainer/Inventory" instance=ExtResource( 11 )]
 margin_top = 72.0
 margin_right = 72.0
 margin_bottom = 144.0
 texture = SubResource( 18 )
 
-[node name="Slot5" parent="CanvasLayer/Inventory" instance=ExtResource( 11 )]
+[node name="Slot5" parent="CanvasLayer/MarginContainer/Inventory" instance=ExtResource( 11 )]
 margin_left = 72.0
 margin_top = 72.0
 margin_right = 144.0
 margin_bottom = 144.0
 texture = SubResource( 19 )
 
-[node name="Slot6" parent="CanvasLayer/Inventory" instance=ExtResource( 11 )]
+[node name="Slot6" parent="CanvasLayer/MarginContainer/Inventory" instance=ExtResource( 11 )]
 margin_left = 144.0
 margin_top = 72.0
 margin_right = 216.0
 margin_bottom = 144.0
 texture = SubResource( 20 )
 
-[node name="Slot7" parent="CanvasLayer/Inventory" instance=ExtResource( 11 )]
+[node name="Slot7" parent="CanvasLayer/MarginContainer/Inventory" instance=ExtResource( 11 )]
 margin_top = 144.0
 margin_right = 72.0
 margin_bottom = 216.0
 texture = SubResource( 21 )
 
-[node name="Slot8" parent="CanvasLayer/Inventory" instance=ExtResource( 11 )]
+[node name="Slot8" parent="CanvasLayer/MarginContainer/Inventory" instance=ExtResource( 11 )]
 margin_left = 72.0
 margin_top = 144.0
 margin_right = 144.0
 margin_bottom = 216.0
 texture = SubResource( 22 )
 
-[node name="Slot9" parent="CanvasLayer/Inventory" instance=ExtResource( 11 )]
+[node name="Slot9" parent="CanvasLayer/MarginContainer/Inventory" instance=ExtResource( 11 )]
 margin_left = 144.0
 margin_top = 144.0
 margin_right = 216.0
 margin_bottom = 216.0
 texture = SubResource( 23 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer2"]
+margin_left = 963.0
+margin_top = 32.0
+margin_right = 1248.0
+margin_bottom = 89.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 14 )
+text = "Hello World"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/MarginContainer3"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 232.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 200, 20 )
+size_flags_horizontal = 0
+custom_styles/fg = SubResource( 26 )
+custom_styles/bg = SubResource( 27 )
+value = 100.0
+percent_visible = false
 
 [node name="GrabArea" type="Area2D" parent="."]
 __meta__ = {
