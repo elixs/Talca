@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/sprites/Destructible Objects Sprite Sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/ui_big_pieces2x.png" type="Texture" id=2]
+[ext_resource path="res://scripts/movable_box.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 40 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 70, 40 )
+
+[node name="MovableBox" type="KinematicBody2D"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -6, -16 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 1 )
+hframes = 7
+vframes = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+
+[node name="Prompt" type="Sprite" parent="."]
+visible = false
+position = Vector2( -1, -62 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 368, 216, 26, 32 )

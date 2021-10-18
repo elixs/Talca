@@ -1,5 +1,10 @@
+class_name Player
 extends KinematicBody2D
 
+enum State {
+	MOVING,
+	PUSHING
+}
 
 signal jumped(meh, owo)
 
@@ -8,10 +13,14 @@ const JUMP_SPEED = 750
 const ACCELERATION = 3000
 const GRAVITY = 2000
 const Bullet = preload("res://scenes/bullet.tscn")
+const ParabolicBullet = preload("res://scenes/parabolic_bullet.tscn")
 
 var linear_vel = Vector2.ZERO
 var health = 100 setget _set_health
 var max_health = 100
+
+var current_state = State.MOVING
+var interactables: Array = []
 
 var _facing_right = true
 var _box : Box = null
@@ -39,6 +48,15 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	match current_state:
+		State.MOVING:
+			_moving(delta)
+		State.PUSHING:
+			_pushing(delta)
+
+
+func _moving(delta: float) -> void:
+	
 	var can_move = not (playback.get_current_node() == "grab" or playback.get_current_node() == "attack")
 	
 	linear_vel = move_and_slide(linear_vel, Vector2.UP)
@@ -59,7 +77,12 @@ func _physics_process(delta: float) -> void:
 		emit_signal("jumped", "asdf", 123)
 	
 	if Input.is_action_just_pressed("fire"):
-		_fire()
+		if interactables.size() > 0:
+			var interactable = interactables.back()
+			if interactable.has_method("interact"):
+				interactable.interact(self)
+		else:
+			_fire()
 		
 	if on_floor and Input.is_action_just_pressed("attack"):
 		_attack()
@@ -90,6 +113,22 @@ func _physics_process(delta: float) -> void:
 		scale.x = -1
 
 
+func _pushing(delta: float) -> void:
+	pass
+	# if you start falling, go to moving
+	# if you collide with an obstacle, the animation don't stop
+
+func start_pushing():
+	call_deferred("set_state", State.PUSHING)
+
+func set_state(new_state):
+#	match current_state:
+	
+#	match new_state:
+
+	current_state = new_state
+
+
 func take_damage(value):
 	print("Auch! %d" % [value])
 	self.health -= value
@@ -118,12 +157,22 @@ func _on_mouse_entered():
 	print("owo")
 
 
+#func _fire():
+#	var bullet = Bullet.instance()
+#	get_parent().add_child(bullet)
+#	bullet.global_position = $BulletSpawn.global_position
+#	if not _facing_right:
+#		bullet.rotation = PI
+
+
 func _fire():
-	var bullet = Bullet.instance()
+	var bullet = ParabolicBullet.instance()
 	get_parent().add_child(bullet)
 	bullet.global_position = $BulletSpawn.global_position
+	var direction = Vector2(1, -1)
 	if not _facing_right:
-		bullet.rotation = PI
+		direction.x *= -1
+	bullet.launch(direction)
 
 
 func _attack():

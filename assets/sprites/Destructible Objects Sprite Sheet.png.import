@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Battlemage Fast magic.png-928c460c0c879fda58d4777b9913b323.stex"
+path="res://.import/Destructible Objects Sprite Sheet.png-af289f0c45cca47cd5d0b2c5e1dda892.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Battlemage Fantasy Character/Battlemage Complete (Sprite Sheet)/Fast Magic/Battlemage Fast magic.png"
-dest_files=[ "res://.import/Battlemage Fast magic.png-928c460c0c879fda58d4777b9913b323.stex" ]
+source_file="res://assets/sprites/Destructible Objects Sprite Sheet.png"
+dest_files=[ "res://.import/Destructible Objects Sprite Sheet.png-af289f0c45cca47cd5d0b2c5e1dda892.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=1
+flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
