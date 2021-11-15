@@ -24,5 +24,10 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node):
+	
+	if body is Enemy:
+		body.take_damage(10)
+	
 	if not body.is_in_group("player"):
 		queue_free()
+	

@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/sprites/Monsters_Creatures_Fantasy/Mushroom/Run.png" type="Texture" id=2]
+[ext_resource path="res://scripts/evil_honguito.gd" type="Script" id=3]
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	COLOR.rgb = 1.0 - color.rgb;
+	COLOR.a = color.a;
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "run"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[node name="EvilHonguito" instance=ExtResource( 1 )]
+collision_layer = 4
+script = ExtResource( 3 )
+SPEED = 300
+
+[node name="Sprite" parent="Pivot" index="0"]
+material = SubResource( 4 )
+position = Vector2( -2, -28 )
+scale = Vector2( -3, 3 )
+texture = ExtResource( 2 )
+
+[node name="WallRayCast" type="RayCast2D" parent="Pivot" index="1"]
+position = Vector2( 8, 26 )
+enabled = true
+cast_to = Vector2( 16, 0 )
+
+[node name="FloorRayCast" type="RayCast2D" parent="Pivot" index="2"]
+position = Vector2( 61, 42 )
+enabled = true
+cast_to = Vector2( 0, 16 )
+
+[node name="AnimationPlayer" parent="." index="2"]
+autoplay = "run"
+anims/run = SubResource( 2 )

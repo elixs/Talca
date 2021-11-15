@@ -6,7 +6,7 @@ enum State {
 	PUSHING
 }
 
-signal jumped(meh, owo)
+signal jumped
 
 const SPEED = 300
 const JUMP_SPEED = 750
@@ -74,7 +74,7 @@ func _moving(delta: float) -> void:
 	if on_floor and Input.is_action_just_pressed("jump"):
 		linear_vel.y = -JUMP_SPEED
 		jump_sound.play()
-		emit_signal("jumped", "asdf", 123)
+		emit_signal("jumped")
 	
 	if Input.is_action_just_pressed("fire"):
 		if interactables.size() > 0:
@@ -211,3 +211,12 @@ func _on_attack_body_entered(body: Node):
 func _set_health(value):
 	health = clamp(value, 0, max_health)
 	progress_bar.value = health
+	
+	if health == 0:
+		_respawn()
+
+
+func _respawn():
+	if Manager.respawn:
+		global_position = Manager.respawn
+	_set_health(max_health)

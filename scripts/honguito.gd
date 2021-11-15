@@ -1,14 +1,7 @@
-extends KinematicBody2D
+extends Enemy
 
-
-const SPEED = 200
-const ACCELERATION = 1000
-const GRAVITY = 2000
-
-var velocity = Vector2.ZERO
 
 var direction = Vector2.RIGHT
-
 
 onready var pivot = $Pivot
 onready var wall_ray_cast = $Pivot/WallRayCast
