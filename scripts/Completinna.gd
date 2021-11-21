@@ -22,19 +22,24 @@ var max_health = 100
 var current_state = State.MOVING
 var interactables: Array = []
 
-var _facing_right = true
 var _box : Box = null
+var movable_box: Node2D = null
 
 onready var animation_tree = $AnimationTree
 onready var playback = animation_tree.get("parameters/StateMachine/playback") # A blend tree was added as root in order to apply a x1.25 speed to all animations
+onready var animation_player = $AnimationPlayer
 onready var jump_sound = $JumpSound
-onready var attack = $AttackPosition/Attack
-onready var attack_position = $AttackPosition
-onready var grab_area = $GrabArea
+onready var attack = $Pivot/AttackPosition/Attack
+onready var attack_position = $Pivot/AttackPosition
+onready var grab_area = $Pivot/GrabArea
 onready var grab_position = $GrabPosition
-onready var grab_area_collision = $GrabArea/CollisionShape2D
-onready var attack_area = $AttackArea
+onready var grab_area_collision = $Pivot/GrabArea/CollisionShape2D
+onready var attack_area = $Pivot/AttackArea
 onready var progress_bar = $CanvasLayer/MarginContainer3/ProgressBar
+onready var floor_raycast = $FloorRayCast
+onready var pivot = $Pivot
+onready var bullet_spawn = $Pivot/BulletSpawn
+
 
 func _ready() -> void:
 	Manager.player = self
@@ -77,7 +82,7 @@ func _moving(delta: float) -> void:
 		emit_signal("jumped")
 	
 	if Input.is_action_just_pressed("fire"):
-		if interactables.size() > 0:
+		if interactables.size() > 0 and on_floor:
 			var interactable = interactables.back()
 			if interactable.has_method("interact"):
 				interactable.interact(self)
@@ -105,27 +110,63 @@ func _moving(delta: float) -> void:
 	if not can_move:
 		return
 
-	if Input.is_action_pressed("move_left") and not Input.is_action_pressed("move_right") and _facing_right:
-		_facing_right = false
-		scale.x = -1
-	if Input.is_action_pressed("move_right") and not Input.is_action_pressed("move_left") and not _facing_right:
-		_facing_right = true
-		scale.x = -1
+	if Input.is_action_pressed("move_left") and not Input.is_action_pressed("move_right"):
+		pivot.scale.x = -1
+	if Input.is_action_pressed("move_right") and not Input.is_action_pressed("move_left"):
+		pivot.scale.x = 1
 
 
 func _pushing(delta: float) -> void:
-	pass
-	# if you start falling, go to moving
-	# if you collide with an obstacle, the animation don't stop
+	
+	linear_vel = move_and_slide(linear_vel, Vector2.UP)
+	
+	var move_input = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	
+	linear_vel.x = move_toward(linear_vel.x, move_input * SPEED * 0.5, ACCELERATION * 2 * delta)
+	
+	if not floor_raycast.is_colliding():
+		set_state(State.MOVING)
+	
+	if Input.is_action_just_pressed("fire"):
+		set_state(State.MOVING)
 
 func start_pushing():
 	call_deferred("set_state", State.PUSHING)
 
 func set_state(new_state):
-#	match current_state:
 	
-#	match new_state:
-
+	match current_state:
+		State.PUSHING:
+			floor_raycast.enabled = false
+			animation_player.stop()
+			animation_tree.active = true
+			var last_box_global_position = movable_box.global_position
+			remove_child(movable_box)
+			get_parent().add_child(movable_box)
+			movable_box.global_position = last_box_global_position
+			
+			
+			movable_box = null
+	
+	match new_state:
+		State.PUSHING:
+			movable_box = interactables[0]
+			var box_on_right = global_position.x < movable_box.global_position.x
+			global_position.x = movable_box.global_position.x + (-1 if box_on_right else 1) * movable_box.offset
+			animation_tree.active = false
+			animation_player.play("pushing")
+			var last_box_global_position = movable_box.global_position
+			movable_box.get_parent().remove_child(movable_box)
+			add_child(movable_box)
+			movable_box.global_position = last_box_global_position
+			floor_raycast.enabled = true
+			linear_vel = Vector2.ZERO
+			# fix facing
+			if box_on_right:
+				pivot.scale.x = 1
+			else:
+				pivot.scale.x = -1
+			
 	current_state = new_state
 
 
@@ -160,17 +201,17 @@ func _on_mouse_entered():
 #func _fire():
 #	var bullet = Bullet.instance()
 #	get_parent().add_child(bullet)
-#	bullet.global_position = $BulletSpawn.global_position
-#	if not _facing_right:
+#	bullet.global_position = bullet_spawn.global_position
+#	if not pivot.scale.x == -1:
 #		bullet.rotation = PI
 
 
 func _fire():
 	var bullet = ParabolicBullet.instance()
 	get_parent().add_child(bullet)
-	bullet.global_position = $BulletSpawn.global_position
+	bullet.global_position = bullet_spawn.global_position
 	var direction = Vector2(1, -1)
-	if not _facing_right:
+	if pivot.scale.x == -1:
 		direction.x *= -1
 	bullet.launch(direction)
 
@@ -185,7 +226,7 @@ func _grab():
 
 func _drop():
 	if abs(linear_vel.x) > 10:
-		_box.launch(Vector2((1 if _facing_right else -1) * 30, -5))
+		_box.launch(Vector2(pivot.scale.x * 30, -5))
 	else:
 		_box.launch(Vector2.ZERO)
 	_box.remove_child(attack)

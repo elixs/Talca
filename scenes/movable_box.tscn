@@ -10,7 +10,8 @@ extents = Vector2( 32, 40 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 70, 40 )
 
-[node name="MovableBox" type="KinematicBody2D"]
+[node name="MovableBox" type="StaticBody2D"]
+z_index = -1
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -36,3 +37,13 @@ position = Vector2( -1, -62 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 368, 216, 26, 32 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 70, 36 )
+enabled = true
+cast_to = Vector2( 0, 16 )
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2( -70, 36 )
+enabled = true
+cast_to = Vector2( 0, 16 )

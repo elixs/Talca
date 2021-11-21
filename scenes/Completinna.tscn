@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://assets/sprites/Battlemage Fantasy Character/Battlemage Complete (Sprite Sheet)/Idle/Battlemage Idle.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/Battlemage Fantasy Character/Battlemage Complete (Sprite Sheet)/Running/Battlemage Run.png" type="Texture" id=2]
@@ -16,20 +16,66 @@
 [ext_resource path="res://resources/Completinna_anim_state_machine.tres" type="AnimationNodeStateMachine" id=14]
 [ext_resource path="res://resources/theme.tres" type="Theme" id=15]
 [ext_resource path="res://resources/border.gdshader" type="Shader" id=16]
-
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 24.0
-height = 72.0
+[ext_resource path="res://assets/sprites/Battlemage Fantasy Character/Battlemage Complete (Sprite Sheet)/Sustain Magic/Battlemage Sustain Magic.png" type="Texture" id=17]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 16 )
 shader_param/color = null
 shader_param/width = 1.0
 
+[sub_resource type="RectangleShape2D" id=27]
+extents = Vector2( 150, 50 )
+
+[sub_resource type="RectangleShape2D" id=28]
+extents = Vector2( 49, 65 )
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 24.0
+height = 72.0
+
+[sub_resource type="Animation" id=29]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 17 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/Sprite:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 11 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 3 ]
+}
+
 [sub_resource type="Animation" id=3]
 length = 0.8
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("Pivot/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -41,7 +87,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 10 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:vframes")
+tracks/1/path = NodePath("Pivot/Sprite:vframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -53,7 +99,7 @@ tracks/1/keys = {
 "values": [ 8 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("Pivot/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -65,7 +111,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("AttackArea/CollisionShape2D:disabled")
+tracks/3/path = NodePath("Pivot/AttackArea/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -81,7 +127,7 @@ tracks/3/keys = {
 length = 0.1
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("Pivot/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -93,7 +139,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 5 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:vframes")
+tracks/1/path = NodePath("Pivot/Sprite:vframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -105,7 +151,7 @@ tracks/1/keys = {
 "values": [ 13 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("Pivot/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -121,7 +167,7 @@ tracks/2/keys = {
 length = 0.5
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("Pivot/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -133,7 +179,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 8 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:vframes")
+tracks/1/path = NodePath("Pivot/Sprite:vframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -145,7 +191,7 @@ tracks/1/keys = {
 "values": [ 10 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("Pivot/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -157,7 +203,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("AttackPosition/Attack:frame")
+tracks/3/path = NodePath("Pivot/AttackPosition/Attack:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -169,7 +215,7 @@ tracks/3/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("GrabArea/CollisionShape2D:disabled")
+tracks/4/path = NodePath("Pivot/GrabArea/CollisionShape2D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -181,7 +227,7 @@ tracks/4/keys = {
 "values": [ false, true ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("AttackPosition/Attack:visible")
+tracks/5/path = NodePath("Pivot/AttackPosition/Attack:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -198,7 +244,7 @@ length = 0.8
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("Pivot/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -210,7 +256,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:vframes")
+tracks/1/path = NodePath("Pivot/Sprite:vframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -222,7 +268,7 @@ tracks/1/keys = {
 "values": [ 8 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("Pivot/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -237,7 +283,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=7]
 length = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("Pivot/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -249,7 +295,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 5 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:vframes")
+tracks/1/path = NodePath("Pivot/Sprite:vframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -261,7 +307,7 @@ tracks/1/keys = {
 "values": [ 13 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("Pivot/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -276,7 +322,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=8]
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("Pivot/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -288,7 +334,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 5 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:vframes")
+tracks/1/path = NodePath("Pivot/Sprite:vframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -300,7 +346,7 @@ tracks/1/keys = {
 "values": [ 13 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("Pivot/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -315,7 +361,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=9]
 length = 0.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("Pivot/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -327,7 +373,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 5 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:vframes")
+tracks/1/path = NodePath("Pivot/Sprite:vframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -339,7 +385,7 @@ tracks/1/keys = {
 "values": [ 13 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("Pivot/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -354,7 +400,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=10]
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("Pivot/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -366,7 +412,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 5 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:vframes")
+tracks/1/path = NodePath("Pivot/Sprite:vframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -378,7 +424,7 @@ tracks/1/keys = {
 "values": [ 13 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("Pivot/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -390,10 +436,51 @@ tracks/2/keys = {
 "values": [ 9, 10, 11, 12 ]
 }
 
+[sub_resource type="Animation" id=30]
+resource_name = "pushing"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 17 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/Sprite:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 11 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 4, 5, 6, 7 ]
+}
+
 [sub_resource type="Animation" id=11]
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("Pivot/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -405,7 +492,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:vframes")
+tracks/1/path = NodePath("Pivot/Sprite:vframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -417,7 +504,7 @@ tracks/1/keys = {
 "values": [ 10 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("Pivot/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -496,12 +583,6 @@ bg_color = Color( 0.298039, 0.878431, 0.0862745, 1 )
 [sub_resource type="StyleBoxFlat" id=26]
 bg_color = Color( 0.258824, 0.129412, 0.129412, 1 )
 
-[sub_resource type="RectangleShape2D" id=27]
-extents = Vector2( 150, 50 )
-
-[sub_resource type="RectangleShape2D" id=28]
-extents = Vector2( 49, 65 )
-
 [node name="Completinna" type="KinematicBody2D" groups=["player"]]
 position = Vector2( 0, -1 )
 collision_layer = 2
@@ -509,24 +590,21 @@ collision_mask = 15
 input_pickable = true
 script = ExtResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="Pivot" type="Node2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite" parent="Pivot"]
 material = SubResource( 2 )
 rotation = 0.00174533
 scale = Vector2( 4, 4 )
-texture = ExtResource( 2 )
+texture = ExtResource( 17 )
 offset = Vector2( 0, -9 )
-vframes = 10
+vframes = 11
+frame = 3
 
-[node name="AttackPosition" type="Position2D" parent="."]
+[node name="AttackPosition" type="Position2D" parent="Pivot"]
 position = Vector2( 300, 0 )
 
-[node name="Attack" type="Sprite" parent="AttackPosition"]
+[node name="Attack" type="Sprite" parent="Pivot/AttackPosition"]
 visible = false
 scale = Vector2( 4, 4 )
 z_index = 10
@@ -534,7 +612,32 @@ texture = ExtResource( 9 )
 vframes = 10
 frame = 9
 
+[node name="BulletSpawn" type="Position2D" parent="Pivot"]
+position = Vector2( 90, -20 )
+
+[node name="GrabArea" type="Area2D" parent="Pivot"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/GrabArea"]
+position = Vector2( 161, 1 )
+shape = SubResource( 27 )
+disabled = true
+
+[node name="AttackArea" type="Area2D" parent="Pivot"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/AttackArea"]
+position = Vector2( 60, -7 )
+shape = SubResource( 28 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -4 )
+shape = SubResource( 1 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 29 )
 anims/attack = SubResource( 3 )
 anims/fall = SubResource( 4 )
 anims/grab = SubResource( 5 )
@@ -543,6 +646,7 @@ anims/jump = SubResource( 7 )
 anims/jump_start = SubResource( 8 )
 anims/jump_to_fall = SubResource( 9 )
 anims/land = SubResource( 10 )
+anims/pushing = SubResource( 30 )
 anims/run = SubResource( 11 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -551,11 +655,9 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/StateMachine/playback = SubResource( 14 )
 parameters/TimeScale/scale = 1.25
 
-[node name="BulletSpawn" type="Position2D" parent="."]
-position = Vector2( 90, -20 )
-
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+process_mode = 0
 limit_top = 0
 limit_bottom = 972
 smoothing_enabled = true
@@ -695,23 +797,9 @@ custom_styles/bg = SubResource( 26 )
 value = 100.0
 percent_visible = false
 
-[node name="GrabArea" type="Area2D" parent="."]
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabArea"]
-position = Vector2( 161, 1 )
-shape = SubResource( 27 )
-disabled = true
-
 [node name="GrabPosition" type="Position2D" parent="."]
 position = Vector2( 0, -120 )
 
-[node name="AttackArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2( 60, -7 )
-shape = SubResource( 28 )
-disabled = true
+[node name="FloorRayCast" type="RayCast2D" parent="."]
+position = Vector2( 0, 48 )
+cast_to = Vector2( 0, 16 )
